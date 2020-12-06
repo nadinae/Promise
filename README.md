@@ -231,3 +231,28 @@ p.then(null, function (s) {
 // 出错了
 ```
 `Promise.reject()`方法的参数，会原封不动地作为`reject`的理由，变成后续方法的参数。
+
+## try()
+在实际开发中有时候并不想区分函数是同步还是异步，但是想用`Promise`处理。因为这样可以不管函数是否包含异步操作，都用`then`方法指定下一步流程，用`catch`方法捕获错误。如：
+```javascript
+Promise.resolve().then(f)
+```
+这样的缺点是如果`f`是同步的，但是用了`promise`之后就变成异步的了。
+```javascript
+let f = () => console.log(2)
+Promise.resolve().then(f)
+console.log(1)
+//  1
+//  2
+```
+所以想依旧是`Promise`的写法，但是希望按函数本身同步还是异步进行执行。
+
+`Promsie.try()`方法
+```javascript
+let f = () => console.log(2)
+Promise.try(f)
+console.log(1)
+// 2
+// 1
+```
+如果`f`是同步就按同步执行，如果`f`是异步就按 异步执行。
