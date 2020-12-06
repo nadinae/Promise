@@ -26,7 +26,7 @@
 创造`Promise`实例
 ```javascript
 let promise = new Promise(function(resolve,rejected){
-  if(/*成功*/){
+  if(/*成功*/){
     resolve(value)
   }else{
     reject(error)
